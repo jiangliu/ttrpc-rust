@@ -44,8 +44,10 @@ fn sock_error_msg(size: usize, msg: String) -> Error {
 }
 
 fn read_count(fd: RawFd, count: usize) -> Result<Vec<u8>> {
-    let mut v: Vec<u8> = vec![0; count];
     let mut len = 0;
+    let mut v: Vec<u8> = Vec::with_capacity(count);
+    // It's safe because the vector is used as a buffer to receive message.
+    unsafe { v.set_len(count); }
 
     loop {
         match recv(fd, &mut v[len..], MsgFlags::empty()) {
