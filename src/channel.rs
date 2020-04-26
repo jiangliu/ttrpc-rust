@@ -33,11 +33,11 @@ pub struct MessageHeader {
     pub flags: u8,
 }
 
-const SOCK_DICONNECTED: &str = "socket disconnected";
+const SOCK_DISCONNECTED: &str = "socket disconnected";
 
 fn sock_error_msg(size: usize, msg: String) -> Error {
     if size == 0 {
-        return Error::Socket(SOCK_DICONNECTED.to_string());
+        return Error::Socket(SOCK_DISCONNECTED.to_string());
     }
 
     get_rpc_status(Code::INVALID_ARGUMENT, msg)

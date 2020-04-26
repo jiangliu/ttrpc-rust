@@ -193,7 +193,7 @@ impl Drop for ClientClose {
     fn drop(&mut self) {
         close(self.close_fd).unwrap();
         close(self.fd).unwrap();
-        trace!("All client is droped");
+        trace!("All clients have been dropped");
     }
 }
 
